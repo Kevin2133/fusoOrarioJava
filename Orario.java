@@ -3,12 +3,13 @@ class Orario{
     int ore, minuti, secondi;
     boolean solare;
 
+
     public Orario (int ore, int minuti, int secondi, String citta){
         this.citta = citta; 
         this.ore = ore; 
         this.minuti = minuti;
         this.secondi = secondi;
-        this.solare = true;
+        this.solare = true;        
     }
 
     public void visualizza(){
@@ -28,9 +29,17 @@ class Orario{
         }else{
             this.solare = solare;
             if(this.solare){
-                this.ore = this.ore - 1;
+                if(this.ore == 0){
+                    this.ore = 23;
+                }else{
+                    this.ore = this.ore - 1;
+                }
             }else{
-                this.ore = this.ore + 1;
+                if(this.ore == 23){
+                    this.ore = 0;
+                }else{
+                    this.ore = this.ore + 1;
+                }
             }
             
             System.out.println("Orario di " + this.citta + " cambiato correttamente");

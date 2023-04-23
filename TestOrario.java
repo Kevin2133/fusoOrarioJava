@@ -22,6 +22,22 @@ class TestOrario{
         return -1;
     }
 
+    public static int intInputWithRestrictions (int from, int upTo, String prompt, Scanner scanner){
+        int inp;
+        do{
+            System.out.println(prompt);
+
+            inp = scanner.nextInt();
+            scanner.nextLine();
+
+            if((inp < from) || (inp > upTo)){
+                System.out.println("Input non valido, accettati solo valori da " + from + "a " + upTo);
+            }
+        }while((inp < from) || (inp > upTo));
+
+        return inp;
+    }
+
     public static void main (String arg[]){
         Vector<Orario> a = new Vector<Orario>();
         int scelta, ore, minuti, secondi, ind;
@@ -48,15 +64,9 @@ class TestOrario{
                 case 1:
                     System.out.println("Inserisci nome della citta");
                     citta = scanner.nextLine();
-                    System.out.println("Inserisci ore");
-                    ore = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println("Inserisci minuti");
-                    minuti = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println("Inserisci secondi");
-                    secondi = scanner.nextInt();
-                    scanner.nextLine();
+                    ore = intInputWithRestrictions(0, 23, "Inserisci ore", scanner);
+                    minuti = intInputWithRestrictions(0, 59, "Inserisci minuti", scanner);
+                    secondi = intInputWithRestrictions(0, 59, "Inserisci secondi", scanner);                    
 
                     o = new Orario(ore, minuti, secondi, citta);
                     a.add(o);
